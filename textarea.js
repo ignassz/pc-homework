@@ -6,33 +6,33 @@ const initialHeight = minRows * 16;
 const textarea = document.getElementById("ta");
 
 //Initial state of Textarea. Empty/with placeholder. 
-if (ta.value == '') {
-    ta.setAttribute("style", "height:" + initialHeight + "px;overflow-y:hidden;");
+if (textarea.value === '') {
+    textarea.setAttribute("style", "height:" + initialHeight + "px;overflow-y:hidden;");
 }
 else {
-    ta.setAttribute("style", "height:" + (ta.scrollHeight) + "px;overflow-y:hidden;");
+    textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
 }
 
-ta.addEventListener("input", OnInput, false);
+textarea.addEventListener("input", OnInput, false);
 
 function OnInput(e) {
-    this.style.height = 0;
+    textarea.style.height = 0;
 
     //Counting text rows inside Textarea.
     const taLineHeight = 16;
-    const taHeight = ta.scrollHeight;
-    ta.style.height = taHeight;
+    const taHeight = textarea.scrollHeight;
+    textarea.style.height = taHeight;
     const numberOfLines = Math.floor(taHeight / taLineHeight);
 
     //Conditional statements to set style attributes depending on current row count.
     if (numberOfLines < minRows) {
-        ta.setAttribute("style", "height:" + initialHeight + "px;overflow-y:hidden;");
+        textarea.setAttribute("style", "height:" + initialHeight + "px;overflow-y:hidden;");
     }
     else if (numberOfLines >= minRows && numberOfLines <= maxRows) {
-        this.style.height = (this.scrollHeight) + "px";
-        ta.setAttribute("style", "height:" + ta.scrollHeight + "px;overflow-y:hidden;");
+        textarea.style.height = (textarea.scrollHeight) + "px";
+        textarea.setAttribute("style", "height:" + textarea.scrollHeight + "px;overflow-y:hidden;");
     } else {
-        ta.setAttribute("style", "height:" + taLineHeight * maxRows + "px;overflow-y:scroll;");
+        textarea.setAttribute("style", "height:" + taLineHeight * maxRows + "px;overflow-y:scroll;");
     }
 }
 
